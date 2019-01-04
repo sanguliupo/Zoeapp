@@ -18,8 +18,9 @@ class Card extends Component {
 
 				<h3 className="athelas f4 tc">Month: {this.props.month} </h3>
 				<button
+					disabled={this.props.totalVote >= 3 ? true : false}
 					type="submit"
-					className=" ba b--pink"
+					className="ba b--pink pa1 dib"
 					onClick={() => {
 						this.props.onVoteClick();
 						this.setState({

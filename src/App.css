@@ -8,8 +8,19 @@ img {
 
 input,
 button {
-	display: block;
-	margin: 0 auto;
+	display: flex;
+	justify-content: center;
 }
 
+h1 {
+	font-family: Chalkduster, fantasy;
+}
 
+.commentbox {
+	height: 60px;
+	width: 350px;
+}
+
+.searchbar {
+	height: 20px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-function CardList({ data, show, onVoteClick }) {
+function CardList({ data, show, onVoteClick, totalVote }) {
 	if (show === true) {
 		if (data.length == 0) {
 			return (
@@ -19,6 +19,7 @@ function CardList({ data, show, onVoteClick }) {
 								month={monthAndUrl.month}
 								photoUrl={monthAndUrl.url}
 								onVoteClick={onVoteClick}
+								totalVote={totalVote}
 							/>
 						);
 					})}
