@@ -1,12 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Card = ({ month, photoUrl }) => {
-	return (
-		<div className="tc bg-light-yellow dib br3 pa2 ma3 grow bw2 shadow-5">
-			<img alt={`${month} month Zoe`} src={require(`${photoUrl}`)} />
-			<h3 className="athelas f4 tc">Month: {month}</h3>
-		</div>
-	);
-};
+class Card extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			voteCount: 0
+		};
+	}
+
+	render() {
+		return (
+			<div className="tc bg-light-yellow dib br3 pa2 ma3 bw2 shadow-5">
+				<img
+					alt={`${this.props.month} month Zoe`}
+					src={require(`${this.props.photoUrl}`)}
+				/>
+
+				<h3 className="athelas f4 tc">Month: {this.props.month} </h3>
+				<button
+					type="submit"
+					className=" ba b--pink"
+					onClick={() => {
+						this.props.onVoteClick();
+						this.setState({
+							voteCount: this.state.voteCount + 1
+						});
+					}}
+				>
+					Vote
+				</button>
+			</div>
+		);
+	}
+}
 
 export default Card;

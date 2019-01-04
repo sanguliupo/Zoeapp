@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from './Card';
 import CardList from './CardList';
 import Scroll from './Scroll';
 import SearchBar from './SearchBar';
+import Comments from './Comments';
 
 class App extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			data: [
 				{ month: 'zero', url: './photos/0.JPG' },
@@ -23,12 +25,20 @@ class App extends Component {
 				{ month: 'ten', url: './photos/10 months.JPG' },
 				{ month: 'eleven', url: './photos/11 months.JPG' }
 			],
-			searchfield: ''
+			searchfield: '',
+			showCardList: true,
+			showComments: false,
+			totalVote: 0
 		};
 	}
 
 	onSearchChange = event => {
 		this.setState({ searchfield: event.target.value });
+	};
+
+	onVoteClick = () => {
+		console.log('totalVote', this.state.totalVote);
+		this.setState({ totalVote: this.state.totalVote + 1 });
 	};
 
 	render() {
@@ -37,15 +47,30 @@ class App extends Component {
 			return data.month.toLowerCase().includes(searchfield.toLowerCase());
 		});
 
-		return !data.length ? (
-			<h1>Loading...</h1>
-		) : (
-			<div className="App">
+		return (
+			<div className="App tc">
 				<h1 className="athelas f1 tc">Zoe by month</h1>
 				<SearchBar searchChange={this.onSearchChange} />
+				<button
+					onClick={() => {
+						this.setState({
+							showCardList: false,
+							showComments: true
+						});
+					}}
+				>
+					Leave a comment for Zoe!
+				</button>
+				<p>Vote for your favorite pictures (up to 3 votes)</p>
+				<p>You have voted {this.state.totalVote} times</p>
 				<br />
 				<Scroll>
-					<CardList data={filteredData} />
+					<CardList
+						show={this.state.showCardList}
+						data={filteredData}
+						onVoteClick={this.onVoteClick}
+					/>
+					<Comments show={this.state.showComments} />
 				</Scroll>
 			</div>
 		);
