@@ -5,7 +5,10 @@ import Card from './Card';
 import CardList from './CardList';
 import Scroll from './Scroll';
 import SearchBar from './SearchBar';
+import Vote from './Vote';
 import Comments from './Comments';
+import AllComments from './AllComments';
+import VotingResults from './VotingResults';
 
 class App extends Component {
 	constructor(props) {
@@ -27,7 +30,8 @@ class App extends Component {
 			],
 			searchfield: '',
 			showCardList: true,
-
+			showAllComments: false,
+			showVotingResults: false,
 			totalVote: 0
 		};
 	}
@@ -37,8 +41,11 @@ class App extends Component {
 	};
 
 	onVoteClick = () => {
-		console.log('totalVote', this.state.totalVote);
 		this.setState({ totalVote: this.state.totalVote + 1 });
+	};
+
+	onVoteResultsClick = () => {
+		this.setState({ showVotingResults: true, showCardList: false });
 	};
 
 	render() {
@@ -53,14 +60,10 @@ class App extends Component {
 				<div className="flex justify-center bg-washed-red">
 					<Comments />
 					<SearchBar searchChange={this.onSearchChange} />
-
-					<div className="tc bg-light-pink dib br3 pa3 ma3 bw2  athelas f5 ">
-						<p>Vote for your favorite pictures (up to 3 votes)</p>
-						<p>You have voted {this.state.totalVote} times</p>
-						<button type="submit" className="pa1 dib helvetica">
-							See vote results
-						</button>
-					</div>
+					<Vote
+						totalVote={this.state.totalVote}
+						onVoteResultsClick={this.onVoteResultsClick}
+					/>
 				</div>
 
 				<Scroll>
@@ -70,6 +73,8 @@ class App extends Component {
 						onVoteClick={this.onVoteClick}
 						totalVote={this.state.totalVote}
 					/>
+					<AllComments show={this.state.showAllComments} />
+					<VotingResults show={this.state.showVotingResults} />
 				</Scroll>
 			</div>
 		);
