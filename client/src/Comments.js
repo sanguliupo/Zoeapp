@@ -17,8 +17,15 @@ class Comments extends Component {
 						className="commentbox"
 						onChange={this.props.commentBoxChange}
 					/>
-					<button type="submit" className="pa1 dib helvetica f5 ma2">
-						Submit
+					<button
+						type="submit"
+						className="pa1 dib helvetica f5 ma2"
+						onClick={e => {
+							e.preventDefault();
+							this.props.onSubmit();
+						}}
+					>
+						{this.props.submitButtonMessage}
 					</button>
 				</form>
 			</div>

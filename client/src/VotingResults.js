@@ -8,7 +8,7 @@ class VotingResults extends Component {
 
 	render() {
 		if (this.props.show === true) {
-			return <div>hi</div>;
+			return <div>Voting Results</div>;
 		} else return null;
 	}
 }
