@@ -22,10 +22,11 @@ mongoose.connect(
 
 app.get('/api/comment', async (req, res) => {
 	// find all comments
-	const comments = Comment.find({}, (error, allComments) => {
-		console.log('allComments', allComments);
-		res.send(comments);
-	});
+	const comments = await Comment.find({})
+		.select('user message dateSent -_id')
+		.sort({ dateSent: -1 });
+
+	res.send(comments);
 });
 
 app.post('/api/comment', async (req, res) => {
@@ -34,12 +35,15 @@ app.post('/api/comment', async (req, res) => {
 	const comment = new Comment({
 		user,
 		message,
-		dataSent: Date.now()
+		dateSent: Date.now()
 	});
 
 	try {
 		await comment.save();
-		const comments = Comment.find({});
+		const comments = await Comment.find({})
+			.select('user message dateSent -_id')
+			.sort({ dateSent: -1 });
+
 		res.send(comments);
 	} catch (error) {
 		res.status(422).send(error);

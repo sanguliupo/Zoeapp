@@ -43,27 +43,26 @@ class App extends Component {
 		};
 	}
 
-	// componentDidMount() {
-	// test get comments
-	// this.onCommentSubmit().catch(error => console.error(error));
-	// }
+	componentDidMount() {
+		this.getComments().catch(error => console.error(error));
+	}
 
-	// getComments = async () => {
-	// 	const response = await fetch(COMMENT_API_URL);
-	// 	const commentResponse = await response.text();
-	// 	this.setState({ commentResponse });
-	// };
+	getComments = async () => {
+		const response = await fetch(COMMENT_API_URL);
+		const commentResponse = await response.text();
+		this.setState({ commentResponse });
+	};
 
-	// onCommentSubmit = async () => {
-	// 	const testMessage = `Test @ ${new Date().toString()}`;
-	// 	const response = await fetch(COMMENT_API_URL, {
-	// 		method: 'POST',
-	// 		headers: HEADER_TYPE,
-	// 		body: JSON.stringify({ user: 'Vanessa', message: testMessage })
-	// 	});
-	// 	const commentResponse = await response.text();
-	// 	this.setState({ commentResponse });
-	// };
+	onCommentSubmit = async () => {
+		const testMessage = `Test @ ${new Date().toString()}`;
+		const response = await fetch(COMMENT_API_URL, {
+			method: 'POST',
+			headers: HEADER_TYPE,
+			body: JSON.stringify({ user: 'Vanessa', message: testMessage })
+		});
+		const commentResponse = await response.text();
+		this.setState({ commentResponse });
+	};
 
 	onSearchChange = event => {
 		this.setState({ searchfield: event.target.value });
@@ -115,7 +114,7 @@ class App extends Component {
 	};
 
 	render() {
-		// console.log('this.state.commentResponse', this.state.commentResponse);
+		console.log('this.state.commentResponse', this.state.commentResponse);
 		const { data, searchfield } = this.state;
 		const filteredData = data.filter(data => {
 			return data.month.toLowerCase().includes(searchfield.toLowerCase());
