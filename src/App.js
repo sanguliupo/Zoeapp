@@ -29,6 +29,7 @@ class App extends Component {
 				{ month: 'eleven', url: './photos/11 months.JPG' }
 			],
 			searchfield: '',
+			commentbox: '',
 			showCardList: true,
 			showAllComments: false,
 			showVotingResults: false,
@@ -36,6 +37,10 @@ class App extends Component {
 			buttonMessage: 'See vote results'
 		};
 	}
+
+	onCommentBoxChange = event => {
+		this.setState({ commentbox: event.target.value });
+	};
 
 	onSearchChange = event => {
 		this.setState({ searchfield: event.target.value });
@@ -71,7 +76,7 @@ class App extends Component {
 			<div className="App tc">
 				<h1 className="f1 tc">Zoe by month</h1>
 				<div className="flex justify-center bg-washed-red">
-					<Comments />
+					<Comments commentBoxChange={this.onCommentBoxChange} />
 					<SearchBar searchChange={this.onSearchChange} />
 					<Vote
 						totalVote={this.state.totalVote}

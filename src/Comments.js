@@ -12,7 +12,11 @@ class Comments extends Component {
 						placeholder="Your name"
 					/>
 
-					<input type="text" className="commentbox" />
+					<input
+						type="text"
+						className="commentbox"
+						onChange={this.props.commentBoxChange}
+					/>
 					<button type="submit" className="pa1 dib helvetica f5 ma2">
 						Submit
 					</button>
