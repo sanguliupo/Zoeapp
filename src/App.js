@@ -32,7 +32,8 @@ class App extends Component {
 			showCardList: true,
 			showAllComments: false,
 			showVotingResults: false,
-			totalVote: 0
+			totalVote: 0,
+			buttonMessage: 'See vote results'
 		};
 	}
 
@@ -45,7 +46,19 @@ class App extends Component {
 	};
 
 	onVoteResultsClick = () => {
-		this.setState({ showVotingResults: true, showCardList: false });
+		if (this.state.showCardList == true) {
+			this.setState({
+				buttonMessage: 'Return to previous page',
+				showVotingResults: true,
+				showCardList: false
+			});
+		} else {
+			this.setState({
+				buttonMessage: 'See vote results',
+				showVotingResults: false,
+				showCardList: true
+			});
+		}
 	};
 
 	render() {
@@ -63,6 +76,7 @@ class App extends Component {
 					<Vote
 						totalVote={this.state.totalVote}
 						onVoteResultsClick={this.onVoteResultsClick}
+						buttonMessage={this.state.buttonMessage}
 					/>
 				</div>
 

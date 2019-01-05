@@ -18,7 +18,7 @@ class VotingResults extends Component {
 						this.props.onVoteResultsClick();
 					}}
 				>
-					See vote results
+					{this.props.buttonMessage}
 				</button>
 			</div>
 		);
