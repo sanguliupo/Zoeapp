@@ -6,9 +6,11 @@
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^5.4.2"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"

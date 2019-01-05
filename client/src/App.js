@@ -10,6 +10,11 @@ import Comments from './Comments';
 import AllComments from './AllComments';
 import VotingResults from './VotingResults';
 
+const COMMENT_API_URL = '/api/comment';
+const HEADER_TYPE = {
+	'Content-Type': 'application/json'
+};
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -34,9 +39,32 @@ class App extends Component {
 			showAllComments: false,
 			showVotingResults: false,
 			totalVote: 0,
-			buttonMessage: 'See vote results'
+			buttonMessage: 'See vote results',
+			commentResponse: ''
 		};
 	}
+
+	componentDidMount() {
+		// test get comments
+		// this.onCommentSubmit().catch(error => console.error(error));
+	}
+
+	getComments = async () => {
+		const response = await fetch(COMMENT_API_URL);
+		const commentResponse = await response.text();
+		this.setState({ commentResponse });
+	};
+
+	onCommentSubmit = async () => {
+		const testMessage = `Test @ ${new Date().toString()}`;
+		const response = await fetch(COMMENT_API_URL, {
+			method: 'POST',
+			headers: HEADER_TYPE,
+			body: JSON.stringify({ user: 'Vanessa', message: testMessage })
+		});
+		const commentResponse = await response.text();
+		this.setState({ commentResponse });
+	};
 
 	onCommentBoxChange = event => {
 		this.setState({ commentbox: event.target.value });
@@ -67,6 +95,7 @@ class App extends Component {
 	};
 
 	render() {
+		console.log('this.state.commentResponse', this.state.commentResponse);
 		const { data, searchfield } = this.state;
 		const filteredData = data.filter(data => {
 			return data.month.toLowerCase().includes(searchfield.toLowerCase());

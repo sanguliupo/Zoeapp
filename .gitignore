@@ -24,3 +24,5 @@ yarn-error.log*
 
 #photos
 /client/src/photos
+
+/config
