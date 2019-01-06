@@ -80,6 +80,14 @@ class App extends Component {
 				showAllComments: false,
 				showCardList: false
 			});
+		} else if (this.state.showAllComments == true) {
+			this.setState({
+				buttonMessage: 'Return to previous page',
+				submitButtonMessage: 'Submit',
+				showVotingResults: true,
+				showAllComments: false,
+				showCardList: false
+			});
 		} else {
 			this.setState({
 				buttonMessage: 'See vote results',
@@ -101,6 +109,14 @@ class App extends Component {
 				submitButtonMessage: 'Return to previous page',
 				showAllComments: true,
 				showVotingResults: false,
+				showCardList: false
+			});
+		} else if (this.state.showVotingResults == true) {
+			this.setState({
+				buttonMessage: 'Return to previous page',
+				submitButtonMessage: 'Submit',
+				showVotingResults: false,
+				showAllComments: true,
 				showCardList: false
 			});
 		} else {
