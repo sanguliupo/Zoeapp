@@ -7,7 +7,6 @@ class AllComments extends Component {
 	}
 
 	render() {
-		console.log('this.props', this.props);
 		if (this.props.show === true && this.props.commentResponse.length) {
 			return (
 				<div>

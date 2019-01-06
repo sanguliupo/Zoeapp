@@ -50,4 +50,34 @@ app.post('/api/comment', async (req, res) => {
 	}
 });
 
+// return all votes
+app.get('/api/vote', async (req, res) => {
+	const votes = await Vote.find({})
+		.select('photoId count -_id')
+		.sort({ photoId: 1 });
+	console.log('votes', votes);
+	res.send(votes);
+});
+
+app.post('/api/vote', async (req, res) => {
+	const { votedPhotoIds } = req.body;
+
+	votedPhotoIds.map(photoId => {
+		Vote.findOneAndUpdate(
+			{ photoId },
+			{ $inc: { count: 1 } },
+			{ upsert: true, new: true, runValidators: true }
+		).exec();
+	});
+
+	try {
+		const votes = await Vote.find({})
+			.select('photoId count -_id')
+			.sort({ photoId: 1 });
+		res.send(votes);
+	} catch (err) {
+		res.status(422).send(err);
+	}
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

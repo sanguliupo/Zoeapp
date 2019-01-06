@@ -9,6 +9,7 @@ import CardList from './CardList';
 import Scroll from './Scroll';
 
 const COMMENT_API_URL = '/api/comment';
+const VOTE_API_RUL = '/api/vote';
 const HEADER_TYPE = {
 	'Content-Type': 'application/json'
 };
@@ -39,13 +40,14 @@ class App extends Component {
 			commentbox: '',
 			showAllComments: false,
 			submitButtonMessage: 'Submit your comment',
-			commentResponse: ''
+			commentResponse: '',
+			voteResponse: ''
 		};
 	}
 
-	// componentDidMount() {
-	// 	this.getComments().catch(error => console.error(error));
-	// }
+	componentDidMount() {
+		this.onVoteSubmit().catch(error => console.error(error));
+	}
 
 	getComments = async () => {
 		const response = await fetch(COMMENT_API_URL);
@@ -56,8 +58,6 @@ class App extends Component {
 	};
 
 	onCommentSubmit = async (name, message) => {
-		debugger;
-		// const testMessage = `{message} ${new Date().toString()}`;
 		const response = await fetch(COMMENT_API_URL, {
 			method: 'POST',
 			headers: HEADER_TYPE,
@@ -67,6 +67,26 @@ class App extends Component {
 		const commentResponse = JSON.parse(responseText);
 
 		this.setState({ commentResponse });
+	};
+
+	getVotes = async () => {
+		const response = await fetch(VOTE_API_RUL);
+		const voteResponseText = await response.text();
+		const voteResponse = JSON.parse(voteResponseText);
+		this.setState({ voteResponse });
+	};
+
+	onVoteSubmit = async () => {
+		// const { votedPhotoIds } = this.state;
+		const testPhotoIds = [9, 9, 9];
+		const response = await fetch(VOTE_API_RUL, {
+			method: 'POST',
+			headers: HEADER_TYPE,
+			body: JSON.stringify({ votedPhotoIds: testPhotoIds })
+		});
+		const voteResponseText = await response.text();
+		const voteResponse = JSON.parse(voteResponseText);
+		this.setState({ voteResponse });
 	};
 
 	onSearchChange = event => {
@@ -130,7 +150,7 @@ class App extends Component {
 	};
 
 	render() {
-		console.log('this.state.commentResponse', this.state.commentResponse);
+		console.log('this.state.voteResponse', this.state.voteResponse);
 		const { data, searchfield } = this.state;
 		const filteredData = data.filter(data => {
 			return data.month.toLowerCase().includes(searchfield.toLowerCase());
