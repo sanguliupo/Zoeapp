@@ -38,29 +38,33 @@ class App extends Component {
 			showVotingResults: false,
 			commentbox: '',
 			showAllComments: false,
-			submitButtonMessage: 'Submit'
-			// commentResponse: ''
+			submitButtonMessage: 'Submit',
+			commentResponse: ''
 		};
 	}
 
-	componentDidMount() {
-		this.getComments().catch(error => console.error(error));
-	}
+	// componentDidMount() {
+	// 	this.getComments().catch(error => console.error(error));
+	// }
 
 	getComments = async () => {
 		const response = await fetch(COMMENT_API_URL);
-		const commentResponse = await response.text();
+
+		const responseText = await response.text();
+		const commentResponse = JSON.parse(responseText);
 		this.setState({ commentResponse });
 	};
 
-	onCommentSubmit = async () => {
-		const testMessage = `Test @ ${new Date().toString()}`;
+	onCommentSubmit = async (name, message) => {
+		// const testMessage = `{message} ${new Date().toString()}`;
 		const response = await fetch(COMMENT_API_URL, {
 			method: 'POST',
 			headers: HEADER_TYPE,
-			body: JSON.stringify({ user: 'Vanessa', message: testMessage })
+			body: JSON.stringify({ user: name, message: message })
 		});
-		const commentResponse = await response.text();
+		const responseText = await response.text();
+		const commentResponse = JSON.parse(responseText);
+
 		this.setState({ commentResponse });
 	};
 
@@ -98,12 +102,7 @@ class App extends Component {
 		}
 	};
 
-	onCommentBoxChange = event => {
-		this.setState({ commentbox: event.target.value });
-	};
-
 	onSubmit = () => {
-		debugger;
 		if (this.state.showCardList == true) {
 			this.setState({
 				submitButtonMessage: 'Return to previous page',
@@ -144,6 +143,7 @@ class App extends Component {
 						commentBoxChange={this.onCommentBoxChange}
 						onSubmit={this.onSubmit}
 						submitButtonMessage={this.state.submitButtonMessage}
+						onCommentSubmit={this.onCommentSubmit}
 					/>
 					<SearchBar searchChange={this.onSearchChange} />
 					<Vote
@@ -160,7 +160,10 @@ class App extends Component {
 						onVoteClick={this.onVoteClick}
 						totalVote={this.state.totalVote}
 					/>
-					<AllComments show={this.state.showAllComments} />
+					<AllComments
+						show={this.state.showAllComments}
+						commentResponse={this.state.commentResponse}
+					/>
 					<VotingResults show={this.state.showVotingResults} />
 				</Scroll>
 			</div>

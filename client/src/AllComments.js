@@ -7,8 +7,21 @@ class AllComments extends Component {
 	}
 
 	render() {
-		if (this.props.show === true) {
-			return <div>Everyone's Comments</div>;
+		console.log('this.props', this.props);
+		if (this.props.show === true && this.props.commentResponse.length) {
+			return (
+				<div>
+					{this.props.commentResponse.map(x => {
+						return (
+							<>
+								<p>User: {x.user}</p>
+								<p>Comment: {x.message}</p>
+								<p>Time: {x.dateSent}</p>
+							</>
+						);
+					})}
+				</div>
+			);
 		} else return null;
 	}
 }
