@@ -21,6 +21,26 @@ class Comments extends Component {
 		});
 	};
 
+	getSeeAllCommentsButton() {
+		if (this.props.show == false) {
+			return (
+				<button
+					type="submit"
+					className="pa1 dib helvetica f5 ma2"
+					onClick={e => {
+						e.preventDefault();
+						this.props.getComments();
+						this.props.onSubmit();
+					}}
+				>
+					See all comments
+				</button>
+			);
+		} else {
+			return null;
+		}
+	}
+
 	render() {
 		return (
 			<div className=" bg-light-pink dib br3 pa2 ma3 grow bw2">
@@ -46,14 +66,23 @@ class Comments extends Component {
 						onClick={e => {
 							e.preventDefault();
 							this.props.onSubmit();
-							this.props.onCommentSubmit(
-								this.state.name,
-								this.state.message
-							);
+							if (
+								this.props.submitButtonMessage ===
+								'Submit your comment'
+							) {
+								this.props.onCommentSubmit(
+									this.state.name,
+									this.state.message
+								);
+							}
+							this.state.name = '';
+							this.state.message = '';
 						}}
 					>
 						{this.props.submitButtonMessage}
 					</button>
+
+					{this.getSeeAllCommentsButton()}
 				</form>
 			</div>
 		);

@@ -20,7 +20,7 @@ class App extends Component {
 			data: [
 				{ month: 'zero', url: './photos/0.JPG' },
 				{ month: 'one', url: './photos/1 month.JPG' },
-				{ month: 'two', url: './photos/2 months.jpeg' },
+				{ month: 'two', url: './photos/2 months.JPG' },
 				{ month: 'three', url: './photos/3 months.jpeg' },
 				{ month: 'four', url: './photos/4 months.JPG' },
 				{ month: 'five', url: './photos/5 months.jpeg' },
@@ -38,7 +38,7 @@ class App extends Component {
 			showVotingResults: false,
 			commentbox: '',
 			showAllComments: false,
-			submitButtonMessage: 'Submit',
+			submitButtonMessage: 'Submit your comment',
 			commentResponse: ''
 		};
 	}
@@ -56,6 +56,7 @@ class App extends Component {
 	};
 
 	onCommentSubmit = async (name, message) => {
+		debugger;
 		// const testMessage = `{message} ${new Date().toString()}`;
 		const response = await fetch(COMMENT_API_URL, {
 			method: 'POST',
@@ -87,7 +88,7 @@ class App extends Component {
 		} else if (this.state.showAllComments == true) {
 			this.setState({
 				buttonMessage: 'Return to previous page',
-				submitButtonMessage: 'Submit',
+				submitButtonMessage: 'Submit your comment',
 				showVotingResults: true,
 				showAllComments: false,
 				showCardList: false
@@ -113,14 +114,14 @@ class App extends Component {
 		} else if (this.state.showVotingResults == true) {
 			this.setState({
 				buttonMessage: 'Return to previous page',
-				submitButtonMessage: 'Submit',
+				submitButtonMessage: 'Submit your comment',
 				showVotingResults: false,
 				showAllComments: true,
 				showCardList: false
 			});
 		} else {
 			this.setState({
-				submitButtonMessage: 'Submit',
+				submitButtonMessage: 'Submit your comment',
 				showAllComments: false,
 				showVotingResults: false,
 				showCardList: true
@@ -144,6 +145,8 @@ class App extends Component {
 						onSubmit={this.onSubmit}
 						submitButtonMessage={this.state.submitButtonMessage}
 						onCommentSubmit={this.onCommentSubmit}
+						getComments={this.getComments}
+						show={this.state.showAllComments}
 					/>
 					<SearchBar searchChange={this.onSearchChange} />
 					<Vote
