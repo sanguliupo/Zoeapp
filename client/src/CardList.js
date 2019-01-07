@@ -3,7 +3,7 @@ import Card from './Card';
 
 function CardList({ data, show, onVoteClick, totalVote, onVoteSubmit }) {
 	if (show === true) {
-		if (data.length == 0) {
+		if (data.length === 0) {
 			return (
 				<p className="tc">
 					This is not a valid input. Type in something like "one",

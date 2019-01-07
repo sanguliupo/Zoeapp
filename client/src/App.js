@@ -100,10 +100,6 @@ class App extends Component {
 		};
 	}
 
-	componentDidMount() {
-		// this.onVoteSubmit().catch(error => console.error(error));
-	}
-
 	getComments = async () => {
 		const response = await fetch(COMMENT_API_URL);
 		const responseText = await response.text();
@@ -140,7 +136,6 @@ class App extends Component {
 		});
 		const voteResponseText = await response.text();
 		const voteResponse = JSON.parse(voteResponseText);
-		console.log('voteResponse', voteResponse);
 		this.setState({ voteResponse });
 	};
 
@@ -153,14 +148,14 @@ class App extends Component {
 	};
 
 	onVoteResultsClick = () => {
-		if (this.state.showCardList == true) {
+		if (this.state.showCardList === true) {
 			this.setState({
 				buttonMessage: 'Return to previous page',
 				showVotingResults: true,
 				showAllComments: false,
 				showCardList: false
 			});
-		} else if (this.state.showAllComments == true) {
+		} else if (this.state.showAllComments === true) {
 			this.setState({
 				buttonMessage: 'Return to previous page',
 				submitButtonMessage: 'Submit your comment',
@@ -179,14 +174,14 @@ class App extends Component {
 	};
 
 	onSubmit = () => {
-		if (this.state.showCardList == true) {
+		if (this.state.showCardList === true) {
 			this.setState({
 				submitButtonMessage: 'Return to previous page',
 				showAllComments: true,
 				showVotingResults: false,
 				showCardList: false
 			});
-		} else if (this.state.showVotingResults == true) {
+		} else if (this.state.showVotingResults === true) {
 			this.setState({
 				buttonMessage: 'Return to previous page',
 				submitButtonMessage: 'Submit your comment',
@@ -205,7 +200,6 @@ class App extends Component {
 	};
 
 	render() {
-		console.log('this.state.voteResponse', this.state.voteResponse);
 		const { data, searchfield } = this.state;
 		const filteredData = data.filter(data => {
 			return data.month.toLowerCase().includes(searchfield.toLowerCase());

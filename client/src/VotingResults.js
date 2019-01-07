@@ -7,15 +7,10 @@ class VotingResults extends Component {
 	}
 
 	render() {
-		console.log('this.props.voteResponse', this.props.voteResponse);
 		if (this.props.show === true && this.props.voteResponse.length) {
-			// const dataWithUpdatedCount = this.props.data;
-
 			this.props.voteResponse.forEach(vote => {
 				this.props.data[vote.photoId].count = vote.count;
 			});
-
-			console.log('this.props.data', this.props.data);
 
 			return (
 				<div>

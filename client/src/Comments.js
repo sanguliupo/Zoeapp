@@ -22,7 +22,7 @@ class Comments extends Component {
 	};
 
 	getSeeAllCommentsButton() {
-		if (this.props.show == false) {
+		if (this.props.show === false) {
 			return (
 				<button
 					type="submit"
@@ -75,8 +75,11 @@ class Comments extends Component {
 									this.state.message
 								);
 							}
-							this.state.name = '';
-							this.state.message = '';
+
+							this.setState({
+								name: '',
+								message: ''
+							});
 						}}
 					>
 						{this.props.submitButtonMessage}
