@@ -16,6 +16,7 @@ function CardList({ data, show, onVoteClick, totalVote, onVoteSubmit }) {
 					{data.map((monthAndUrl, index) => {
 						return (
 							<Card
+								key={index}
 								month={monthAndUrl.month}
 								photoUrl={monthAndUrl.url}
 								onVoteClick={onVoteClick}

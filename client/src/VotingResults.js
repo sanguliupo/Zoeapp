@@ -7,16 +7,23 @@ class VotingResults extends Component {
 	}
 
 	render() {
-		console.log('this.props.voteResponse', this.props);
+		console.log('this.props.voteResponse', this.props.voteResponse);
 		if (this.props.show === true && this.props.voteResponse.length) {
+			// const dataWithUpdatedCount = this.props.data;
+
+			this.props.voteResponse.forEach(vote => {
+				this.props.data[vote.photoId].count = vote.count;
+			});
+
+			console.log('this.props.data', this.props.data);
+
 			return (
 				<div>
-					{this.props.voteResponse.map(x => {
+					{this.props.data.map(photo => {
 						return (
-							<div className="br2 ba ba b--dotted bw4 b--black-10 mv4 w-100 w-50-m w-25-l  dib ma4">
-								<p>photo Id: {x.photoId}</p>
-
-								<p>number of votes: {x.count}</p>
+							<div className="tc bg-light-blue dib br3 pa2 ma3 bw2 shadow-5">
+								<img src={require(`${photo.url}`)} />
+								<p>number of votes: {photo.count}</p>
 							</div>
 						);
 					})}

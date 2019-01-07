@@ -19,18 +19,73 @@ class App extends Component {
 		super(props);
 		this.state = {
 			data: [
-				{ month: 'zero', url: './photos/0.JPG', photoId: 0 },
-				{ month: 'one', url: './photos/1 month.JPG', photoId: 1 },
-				{ month: 'two', url: './photos/2 months.JPG', photoId: 2 },
-				{ month: 'three', url: './photos/3 months.jpeg', photoId: 3 },
-				{ month: 'four', url: './photos/4 months.JPG', photoId: 4 },
-				{ month: 'five', url: './photos/5 months.jpeg', photoId: 5 },
-				{ month: 'six', url: './photos/6 months.JPG', photoId: 6 },
-				{ month: 'seven', url: './photos/7 months.JPG', photoId: 7 },
-				{ month: 'eight', url: './photos/8 months.JPG', photoId: 8 },
-				{ month: 'nine', url: './photos/9 months.JPG', photoId: 9 },
-				{ month: 'ten', url: './photos/10 months.JPG', photoId: 10 },
-				{ month: 'eleven', url: './photos/11 months.JPG', photoId: 11 }
+				{ month: 'zero', url: './photos/0.JPG', photoId: 0, count: 0 },
+				{
+					month: 'one',
+					url: './photos/1 month.JPG',
+					photoId: 1,
+					count: 0
+				},
+				{
+					month: 'two',
+					url: './photos/2 months.JPG',
+					photoId: 2,
+					count: 0
+				},
+				{
+					month: 'three',
+					url: './photos/3 months.jpeg',
+					photoId: 3,
+					count: 0
+				},
+				{
+					month: 'four',
+					url: './photos/4 months.JPG',
+					photoId: 4,
+					count: 0
+				},
+				{
+					month: 'five',
+					url: './photos/5 months.jpeg',
+					photoId: 5,
+					count: 0
+				},
+				{
+					month: 'six',
+					url: './photos/6 months.JPG',
+					photoId: 6,
+					count: 0
+				},
+				{
+					month: 'seven',
+					url: './photos/7 months.JPG',
+					photoId: 7,
+					count: 0
+				},
+				{
+					month: 'eight',
+					url: './photos/8 months.JPG',
+					photoId: 8,
+					count: 0
+				},
+				{
+					month: 'nine',
+					url: './photos/9 months.JPG',
+					photoId: 9,
+					count: 0
+				},
+				{
+					month: 'ten',
+					url: './photos/10 months.JPG',
+					photoId: 10,
+					count: 0
+				},
+				{
+					month: 'eleven',
+					url: './photos/11 months.JPG',
+					photoId: 11,
+					count: 0
+				}
 			],
 			searchfield: '',
 			showCardList: true,
@@ -192,6 +247,7 @@ class App extends Component {
 					<VotingResults
 						show={this.state.showVotingResults}
 						voteResponse={this.state.voteResponse}
+						data={this.state.data}
 					/>
 				</Scroll>
 			</div>
