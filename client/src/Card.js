@@ -23,6 +23,7 @@ class Card extends Component {
 					className="ba b--pink pa1 dib"
 					onClick={() => {
 						this.props.onVoteClick();
+						this.props.onVoteSubmit(this.props.photoId);
 						this.setState({
 							voteCount: this.state.voteCount + 1
 						});

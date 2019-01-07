@@ -19,18 +19,18 @@ class App extends Component {
 		super(props);
 		this.state = {
 			data: [
-				{ month: 'zero', url: './photos/0.JPG' },
-				{ month: 'one', url: './photos/1 month.JPG' },
-				{ month: 'two', url: './photos/2 months.JPG' },
-				{ month: 'three', url: './photos/3 months.jpeg' },
-				{ month: 'four', url: './photos/4 months.JPG' },
-				{ month: 'five', url: './photos/5 months.jpeg' },
-				{ month: 'six', url: './photos/6 months.JPG' },
-				{ month: 'seven', url: './photos/7 months.JPG' },
-				{ month: 'eight', url: './photos/8 months.JPG' },
-				{ month: 'nine', url: './photos/9 months.JPG' },
-				{ month: 'ten', url: './photos/10 months.JPG' },
-				{ month: 'eleven', url: './photos/11 months.JPG' }
+				{ month: 'zero', url: './photos/0.JPG', photoId: 0 },
+				{ month: 'one', url: './photos/1 month.JPG', photoId: 1 },
+				{ month: 'two', url: './photos/2 months.JPG', photoId: 2 },
+				{ month: 'three', url: './photos/3 months.jpeg', photoId: 3 },
+				{ month: 'four', url: './photos/4 months.JPG', photoId: 4 },
+				{ month: 'five', url: './photos/5 months.jpeg', photoId: 5 },
+				{ month: 'six', url: './photos/6 months.JPG', photoId: 6 },
+				{ month: 'seven', url: './photos/7 months.JPG', photoId: 7 },
+				{ month: 'eight', url: './photos/8 months.JPG', photoId: 8 },
+				{ month: 'nine', url: './photos/9 months.JPG', photoId: 9 },
+				{ month: 'ten', url: './photos/10 months.JPG', photoId: 10 },
+				{ month: 'eleven', url: './photos/11 months.JPG', photoId: 11 }
 			],
 			searchfield: '',
 			showCardList: true,
@@ -46,12 +46,11 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		this.onVoteSubmit().catch(error => console.error(error));
+		// this.onVoteSubmit().catch(error => console.error(error));
 	}
 
 	getComments = async () => {
 		const response = await fetch(COMMENT_API_URL);
-
 		const responseText = await response.text();
 		const commentResponse = JSON.parse(responseText);
 		this.setState({ commentResponse });
@@ -76,16 +75,17 @@ class App extends Component {
 		this.setState({ voteResponse });
 	};
 
-	onVoteSubmit = async () => {
+	onVoteSubmit = async photoId => {
 		// const { votedPhotoIds } = this.state;
-		const testPhotoIds = [9, 9, 9];
+		// const testPhotoIds = [9, 9, 9];
 		const response = await fetch(VOTE_API_RUL, {
 			method: 'POST',
 			headers: HEADER_TYPE,
-			body: JSON.stringify({ votedPhotoIds: testPhotoIds })
+			body: JSON.stringify({ votedPhotoIds: [photoId] })
 		});
 		const voteResponseText = await response.text();
 		const voteResponse = JSON.parse(voteResponseText);
+		console.log('voteResponse', voteResponse);
 		this.setState({ voteResponse });
 	};
 
@@ -173,6 +173,7 @@ class App extends Component {
 						totalVote={this.state.totalVote}
 						onVoteResultsClick={this.onVoteResultsClick}
 						buttonMessage={this.state.buttonMessage}
+						getVotes={this.getVotes}
 					/>
 				</div>
 
@@ -182,12 +183,16 @@ class App extends Component {
 						data={filteredData}
 						onVoteClick={this.onVoteClick}
 						totalVote={this.state.totalVote}
+						onVoteSubmit={this.onVoteSubmit}
 					/>
 					<AllComments
 						show={this.state.showAllComments}
 						commentResponse={this.state.commentResponse}
 					/>
-					<VotingResults show={this.state.showVotingResults} />
+					<VotingResults
+						show={this.state.showVotingResults}
+						voteResponse={this.state.voteResponse}
+					/>
 				</Scroll>
 			</div>
 		);

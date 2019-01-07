@@ -16,6 +16,7 @@ class VotingResults extends Component {
 					className="pa1 dib helvetica"
 					onClick={() => {
 						this.props.onVoteResultsClick();
+						this.props.getVotes();
 					}}
 				>
 					{this.props.buttonMessage}
