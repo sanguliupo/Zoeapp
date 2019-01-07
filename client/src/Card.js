@@ -10,7 +10,7 @@ class Card extends Component {
 
 	render() {
 		return (
-			<div className="tc bg-light-yellow dib br3 pa2 ma3 bw2 shadow-5">
+			<div className="tc bg-light-yellow dib br3 pa2 ma3 bw2 shadow-5 ">
 				<img
 					alt={`${this.props.month} month Zoe`}
 					src={require(`${this.props.photoUrl}`)}

@@ -1,13 +1,11 @@
 img {
 	width: 200px;
-	/*margin: 20px;*/
-	/* border-style: solid;
-  border-width: 2px;
-  border-color: black;*/
 }
 
 input,
-button {
+button,
+.commentbox,
+.searchbar {
 	display: flex;
 	justify-content: center;
 }
@@ -16,11 +14,13 @@ h1 {
 	font-family: Chalkduster, fantasy;
 }
 
-.commentbox {
-	height: 60px;
-	width: 350px;
+.commentbox,
+.searchbar {
+	width: 100%;
+	height: auto;
 }
 
-.searchbar {
+/*.searchbar {
 	height: 20px;
 }
+*/
