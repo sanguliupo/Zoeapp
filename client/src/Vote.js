@@ -13,7 +13,7 @@ class VotingResults extends Component {
 				<p>You have voted {this.props.totalVote} times</p>
 				<button
 					type="submit"
-					className="pa1 dib helvetica"
+					className="pa1 dib helvetica br-pill"
 					onClick={() => {
 						this.props.onVoteResultsClick();
 						this.props.getVotes();

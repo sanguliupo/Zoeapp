@@ -26,7 +26,7 @@ class Comments extends Component {
 			return (
 				<button
 					type="submit"
-					className="pa1 dib helvetica f5 ma2"
+					className="pa1 dib helvetica f5 ma2 br-pill"
 					onClick={e => {
 						e.preventDefault();
 						this.props.getComments();
@@ -64,7 +64,7 @@ class Comments extends Component {
 					/>
 					<button
 						type="submit"
-						className="pa1 dib helvetica f5 ma2"
+						className="pa1 dib helvetica f5 ma2 br-pill"
 						onClick={e => {
 							e.preventDefault();
 							this.props.onSubmit();
