@@ -26,7 +26,7 @@ class VotingResults extends Component {
 
 			const chartData = this.props.data.map((photoDatum, index) => {
 				return {
-					count: photoDatum.count,
+					vote: photoDatum.count,
 					name: `month ${index} `
 				};
 			});
@@ -55,11 +55,10 @@ class VotingResults extends Component {
 							barSize={45}
 						>
 							<CartesianGrid strokeDasharray="1 3" />
-							<XAxis type="number" dataKey="count" />
+							<XAxis type="number" dataKey="vote" />
 							<YAxis type="category" dataKey="name" />
 							<Tooltip />
-							<Legend />
-							<Bar dataKey="count" fill="#ff00cc" />
+							<Bar dataKey="vote" fill="#ff00cc" />
 						</BarChart>
 					</ResponsiveContainer>
 				</div>
