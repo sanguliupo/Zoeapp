@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const moment = require('moment');
 
 class AllComments extends Component {
 	constructor(props) {
@@ -10,14 +11,21 @@ class AllComments extends Component {
 		if (this.props.show === true && this.props.commentResponse.length) {
 			return (
 				<div>
-					{this.props.commentResponse.map(x => {
+					{this.props.commentResponse.map(comment => {
 						return (
 							<div
-								className="br2 ba ba b--dotted bw2 b--red mv4 dib ma4 avenir sans-serif white b"
-								key={x.dateSent}
+								className="br2 ba ba b--dotted bw2 b--red mv4 dib ma4 avenir sans-serif white "
+								key={comment.dateSent}
 							>
-								<p>User: {x.user}</p>
-								<p>Comment: {x.message}</p>
+								<p className="allcomments">
+									User: {comment.user}
+								</p>
+								<p className="moment">
+									{moment(comment.dateSent).fromNow()}
+								</p>
+								<p className="allcomments">
+									Comment: {comment.message}
+								</p>
 							</div>
 						);
 					})}

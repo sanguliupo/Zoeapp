@@ -64,3 +64,12 @@ h1,
 		url('./photos/rainbowbackdrop.jpg');
 	background-size: cover;
 }
+
+.moment {
+	font-size: 12px;
+	font-style: italic;
+}
+
+.allcomments {
+	font-weight: bold;
+}
