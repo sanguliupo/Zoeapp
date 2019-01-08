@@ -20,6 +20,11 @@ h1 {
 	height: auto;
 }
 
+.topBar {
+	width: 350px;
+	height: auto;
+}
+
 /*.searchbar {
 	height: 20px;
 }

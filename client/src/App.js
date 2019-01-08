@@ -206,9 +206,9 @@ class App extends Component {
 		});
 
 		return (
-			<div className="App tc">
+			<div>
 				<h1 className="f1 tc">Zoe by month</h1>
-				<div className="flex flex-wrap justify-center bg-washed-red functions">
+				<div className="flex flex-wrap justify-center bg-washed-red">
 					<Comments
 						commentBoxChange={this.onCommentBoxChange}
 						onSubmit={this.onSubmit}

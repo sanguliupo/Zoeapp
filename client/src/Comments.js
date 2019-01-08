@@ -43,7 +43,7 @@ class Comments extends Component {
 
 	render() {
 		return (
-			<div className=" bg-light-pink dib br3 pa3 ma3 grow bw2 tc">
+			<div className=" bg-light-pink dib br3 pa3 ma3 grow bw2 tc topBar">
 				<form>
 					<p className="athelas f5 ma2 commentbox">
 						Leave a comment for Zoe!
