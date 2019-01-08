@@ -15,7 +15,8 @@ button,
 	justify-content: center;
 }
 
-h1 {
+h1,
+.monthfont {
 	font-family: Chalkduster, fantasy;
 }
 
@@ -43,9 +44,23 @@ h1 {
 	display: flex;
 	justify-content: space-around;
 	align-items: stretch;
+	background-color: white;
+}
+
+.cardlist {
+	background-color: white;
 }
 
 .votingLeftColumn {
 	margin: 50px 0 10px 20px;
 	flex: 0 0 100px;
+}
+
+.scroll {
+	background-image: linear-gradient(
+			rgba(100, 0, 0, 0.3),
+			rgba(100, 0, 0, 0.3)
+		),
+		url('./photos/rainbowbackdrop.jpg');
+	background-size: cover;
 }

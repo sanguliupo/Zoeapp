@@ -12,7 +12,10 @@ class AllComments extends Component {
 				<div>
 					{this.props.commentResponse.map(x => {
 						return (
-							<div className="br2 ba ba b--dotted bw2 b--black-10 mv4 dib ma4">
+							<div
+								className="br2 ba ba b--dotted bw2 b--red mv4 dib ma4 avenir sans-serif white b"
+								key={x.dateSent}
+							>
 								<p>User: {x.user}</p>
 								<p>Comment: {x.message}</p>
 							</div>

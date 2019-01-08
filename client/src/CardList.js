@@ -12,7 +12,7 @@ function CardList({ data, show, onVoteClick, totalVote, onVoteSubmit }) {
 			);
 		} else
 			return (
-				<div className="tc">
+				<div className="tc cardlist">
 					{data.map((monthAndUrl, index) => {
 						return (
 							<Card

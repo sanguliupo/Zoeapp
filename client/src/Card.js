@@ -10,17 +10,17 @@ class Card extends Component {
 
 	render() {
 		return (
-			<div className="tc bg-light-yellow dib br3 pa2 ma3 bw2 shadow-5 ">
+			<div className="tc bg-light-yellow dib br3 pa2 ma3 bw2 shadow-5">
 				<img
 					alt={`${this.props.month} month Zoe`}
 					src={require(`${this.props.photoUrl}`)}
 				/>
 
-				<h3 className="athelas f4 tc">Month: {this.props.month} </h3>
+				<h3 className="monthfont f4 tc">Month: {this.props.month} </h3>
 				<button
 					disabled={this.props.totalVote >= 3 ? true : false}
 					type="submit"
-					className="ba b--pink pa1 dib"
+					className="ba b--pink pa1 dib br-100"
 					onClick={() => {
 						this.props.onVoteClick();
 						this.props.onVoteSubmit(this.props.photoId);
