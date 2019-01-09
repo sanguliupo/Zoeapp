@@ -14,18 +14,14 @@ class AllComments extends Component {
 					{this.props.commentResponse.map(comment => {
 						return (
 							<div
-								className="br2 ba ba b--dotted bw2 b--red mv4 dib ma4 avenir sans-serif white "
+								className=" dib ma4 avenir sans-serif mw5  bg-white br3 pa3 pa4-ns mv3 ba b--black-10"
 								key={comment.dateSent}
 							>
-								<p className="allcomments">
-									User: {comment.user}
-								</p>
+								<p className="allcomments">{comment.user}</p>
 								<p className="moment">
 									{moment(comment.dateSent).fromNow()}
 								</p>
-								<p className="allcomments">
-									Comment: {comment.message}
-								</p>
+								<p className="allcomments">{comment.message}</p>
 							</div>
 						);
 					})}

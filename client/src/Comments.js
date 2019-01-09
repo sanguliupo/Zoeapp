@@ -42,6 +42,9 @@ class Comments extends Component {
 	}
 
 	render() {
+		const isDisabled =
+			(this.state.name.length === 0 || this.state.message.length === 0) &&
+			this.props.submitButtonMessage === 'Submit your comment';
 		return (
 			<div className=" bg-light-pink dib br4 pa3 ma3 grow bw2 tc topBar">
 				<form>
@@ -65,6 +68,7 @@ class Comments extends Component {
 					<button
 						type="submit"
 						className="pa1 dib helvetica f5 ma2 br-pill"
+						disabled={isDisabled}
 						onClick={e => {
 							e.preventDefault();
 							this.props.onSubmit();
