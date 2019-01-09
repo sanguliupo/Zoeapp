@@ -150,14 +150,14 @@ class App extends Component {
 	onVoteResultsClick = () => {
 		if (this.state.showCardList === true) {
 			this.setState({
-				buttonMessage: 'Return to previous page',
+				buttonMessage: 'Return to home page',
 				showVotingResults: true,
 				showAllComments: false,
 				showCardList: false
 			});
 		} else if (this.state.showAllComments === true) {
 			this.setState({
-				buttonMessage: 'Return to previous page',
+				buttonMessage: 'Return to home page',
 				submitButtonMessage: 'Submit your comment',
 				showVotingResults: true,
 				showAllComments: false,
@@ -176,14 +176,14 @@ class App extends Component {
 	onSubmit = () => {
 		if (this.state.showCardList === true) {
 			this.setState({
-				submitButtonMessage: 'Return to previous page',
+				submitButtonMessage: 'Return to home page',
 				showAllComments: true,
 				showVotingResults: false,
 				showCardList: false
 			});
 		} else if (this.state.showVotingResults === true) {
 			this.setState({
-				buttonMessage: 'Return to previous page',
+				buttonMessage: 'Return to home page',
 				submitButtonMessage: 'Submit your comment',
 				showVotingResults: false,
 				showAllComments: true,
